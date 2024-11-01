@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  backtester-worker:
+    container_name: backtester-worker
+    image: demyanishenko/algotrade-backtester
+    depends_on:
+      - strategies-go
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+
+  strategies-go:
+    container_name: algotrade-strategies-go
+    image: demyanishenko/algotrade-strategies-go
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: algotrade-strategies-go backtester-worker --interval 60 --cleanup
+
+networks:
+  app-network:
+    driver: bridge
