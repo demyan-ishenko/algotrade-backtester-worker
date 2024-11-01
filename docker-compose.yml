@@ -14,7 +14,7 @@ services:
 
 
   strategies-go:
-    container_name: algotrade-strategies-go
+    container_name: backtester-worker-strategies-go
     image: demyanishenko/algotrade-strategies-go
     env_file:
       - .env
@@ -23,10 +23,9 @@ services:
 
   watchtower:
     image: containrrr/watchtower
-    container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: algotrade-strategies-go backtester-worker --interval 60 --cleanup
+    command: backtester-worker-strategies-go backtester-worker --interval 60 --cleanup
 
 networks:
   app-network:
