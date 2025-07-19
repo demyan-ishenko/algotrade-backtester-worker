@@ -2,6 +2,7 @@ services:
   backtester-worker:
     container_name: backtester-worker
     image: demyanishenko/algotrade-backtester
+    pull_policy: always
     depends_on:
       - strategies-go
     restart: unless-stopped
