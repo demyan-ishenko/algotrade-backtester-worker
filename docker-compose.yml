@@ -16,6 +16,7 @@ services:
     container_name: backtester-worker-strategies-go
     image: demyanishenko/algotrade-strategies-go
     restart: unless-stopped
+    pull_policy: always
     env_file:
       - .env
     networks:
