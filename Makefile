@@ -12,4 +12,4 @@ start:
 	$(COMPOSE) up $(DETACH_FLAG) --force-recreate --no-deps strategies-go backtester-worker
 
 stop:
-	$(COMPOSE) stop
+	$(COMPOSE) down
