@@ -9,7 +9,7 @@ COMPOSE ?= docker compose
 
 start:
 	$(COMPOSE) up -d watchtower
-	$(COMPOSE) up $(DETACH_FLAG) --force-recreate --no-deps strategies-go backtester-worker
+	$(COMPOSE) up $(DETACH_FLAG) --force-recreate --no-deps strategies-go backtester-worker memcached
 
 stop:
 	$(COMPOSE) down
