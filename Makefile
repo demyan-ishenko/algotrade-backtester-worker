@@ -8,6 +8,7 @@ DETACH_FLAG := $(if $(filter $(D),1 yes true on),-d,)
 COMPOSE ?= docker compose
 
 start:
+	git pull
 	$(COMPOSE) up -d watchtower
 	$(COMPOSE) up $(DETACH_FLAG) --force-recreate --no-deps strategies-go backtester-worker memcached
 
